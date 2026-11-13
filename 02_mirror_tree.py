@@ -4,30 +4,21 @@ class TreeNode():
         self.left = left
         self.right = right
 
-def is_palindrome(arr): # функция взята из ДЗ 2, задача 6
-    le = 0
-    ri = len(arr) - 1
-    while (le < ri):
-        if arr[le] != arr[ri]:
-            break
-        else:
-            le += 1
-            ri -= 1
-    return le >= ri
-
-def add_subtree(arr, root):
-    if root != None:
-        add_subtree(arr, root.left)
-        arr.append(root.val)
-        add_subtree(arr, root.right)
-
+def is_mirror(left, right):
+        if (left == None) and (right == None):
+            return True
+        if (left == None) and (right == None):
+            return False
+        if (left.val != right.val):
+            return False
+        return (is_mirror(left.left, right.right) and is_mirror(left.right, right.left)
+                
 def mirror_tree(root):
     if root == None:
         return True
-    array_of_nodes = []
-    add_subtree(array_of_nodes, root)
-    return is_palindrome(array_of_nodes)
+    return is_mirror(root.left, root.right)
+
 
 # Работа рекурсивной функции: 
-# Cоздаю список узлов в виде LNR
-# если получившийся массив - палиндром, то дерево - симметричное
+# Прохожу дерево BFD
+# сравниваю значения узлов слева и справа (а также структуру - пусто или нет), а потом сравниваю у каждого из них левые и правые узлы
